@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+{% block sidenav %}
+   {% for item in item_list %}
+      <a class="nav-item btn btn-dark mb-2" href="{{ item.link }}"> {{ item.item }}</a>
+   {% endfor %}
+{% endblock sidenav %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search for Books</title>
+    <style>
+        .search-container {
+            display: flex;
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Welcome Area */
+        .welcome-area {
+            background: #2b7bbd;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .welcome-area h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-area p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-area a {
+            text-decoration: none;
+            color: #2b7bbd;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .welcome-area a:hover {
+            background: #f0f4f8;
+            color: #2b7bbd;
+        }
+
+        /* Search Form Area */
+        .form-container {
+            flex: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-container p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table-responsive {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .btn-sm {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-sm:hover {
+            background: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+                margin: 20px;
+            }
+
+            .welcome-area, .form-container {
+                flex: unset;
+                width: 100%;
+                padding: 20px;
+            }
+
+            table {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<div class="search-container">
+    <!-- Welcome Section -->
+    <div class="welcome-area">
+        <h2>Search for Books</h2>
+        <p>Find your next favorite book by searching with its name.</p>
+        <a href="/displaybooks">View All Books</a>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2>Search for Books</h2>
+        <p>Use the form below to search for books by their name.</p>
+        <form action="" enctype="multipart/form-data" method="post" novalidate>
+            {% csrf_token %}
+            <div class="table-responsive">
+                <table>
+                    {{ form.as_table }}
+                    <tr>
+                        <td colspan="1"></td>
+                        <td>
+                            <button class="btn btn-sm float-end" type="submit">Search</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

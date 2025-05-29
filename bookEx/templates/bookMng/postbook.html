@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+{% block sidenav %}
+   {% for item in item_list %}
+      <a class="nav-item btn btn-dark mb-2" href="{{ item.link }}"> {{ item.item }}</a>
+   {% endfor %}
+{% endblock sidenav %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a New Book</title>
+    <style>
+        /* General Reset and Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: auto;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        body > div {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+
+        .auth-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 50px auto;
+            height: auto;
+            background: #fff;
+            border-radius: 15px;
+            overflow-y: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Welcome Area */
+        .welcome-area {
+            background: #2b7bbd;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .welcome-area h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-area p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-area a {
+            text-decoration: none;
+            color: #2b7bbd;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .welcome-area a:hover {
+            background: #f0f4f8;
+            color: #2b7bbd;
+        }
+
+        /* Form Area */
+        .form-container {
+            flex: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        input[type="text"], input[type="file"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .btn-lg {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-lg:hover {
+            background: #218838;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column;
+                margin: 20px;
+            }
+
+            .welcome-area, .form-container {
+                flex: unset;
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<div class="auth-container">
+    <!-- Welcome Section -->
+    <div class="welcome-area">
+        <h2>Welcome to Book Posting!</h2>
+        <p>Looking to view all posted books?</p>
+        <a href="/displaybooks">View Books</a>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h1>Post a New Book</h1>
+        {% if submitted %}
+            <div class="alert alert-success text-center" role="alert">
+                <h4>Posted Successfully!</h4>
+            </div>
+        {% else %}
+            <form action="" enctype="multipart/form-data" method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="card">
+                    <h2 class="text-center mb-4">Book Details</h2>
+
+                    <!-- Form Table -->
+                    <table>
+                        <tbody>
+                            {{ form.as_table }}
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <input class="btn btn-lg" type="submit" value="Submit">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block sidenav %}
+   {% for item in item_list %}
+      <a class="nav-item btn btn-dark mb-2" href="{{ item.link }}"> {{ item.item }}</a>
+   {% endfor %}
+{% endblock sidenav %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="180x180" href="{% static 'logo.png' %}">
+    <title>Login</title>
+    <style>
+        .auth-container {
+            display: flex;
+            width: auto%;
+            max-width: 1200px;
+            margin: 50px auto;
+            height: auto;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Left Side (Welcome Section) */
+        .welcome-area {
+            background: #2b7bbd;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .welcome-area h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-area p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-area a {
+            text-decoration: none;
+            color: #2b7bbd;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .welcome-area a:hover {
+            background: #f0f4f8;
+            color: #2b7bbd;
+        }
+
+        /* Right Side (Login Form) */
+        .login-form-area {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-form-area h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgb(43, 123, 189);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: rgb(0, 153, 255);
+        }
+
+        /* Logo Style */
+        .auth-logo {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<div class="auth-container">
+    <!-- Welcome Section -->
+    <div class="welcome-area">
+        <p><img src="{% static 'logo.png' %}" alt="Logo" class="auth-logo"></p>
+        <h2>Hello, Welcome!</h2>
+        <p>Don't have an account?</p>
+        <a href="/register">Register</a>
+    </div>
+
+    <!-- Login Section -->
+    <div class="login-form-area">
+        <form method="post">
+            <h3>Login Here</h3>
+            {% csrf_token %}
+            
+            <!-- Username -->
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter Username" id="username" name="username">
+            
+            <!-- Password -->
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" id="password" name="password">
+            
+            <!-- Submit Button -->
+            <button type="submit">Log In</button>
+            
+            <!-- Links -->
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+{% block sidenav %}
+   {% for item in item_list %}
+      <a class="nav-item btn btn-dark mb-2" href="{{ item.link }}"> {{ item.item }}</a>
+   {% endfor %}
+{% endblock sidenav %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="180x180" href="{% static 'logo.png' %}">
+    <title>User Registration</title>
+    <style>
+        /* Overall container for the registration page */
+        .auth-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 50px auto;
+            height: auto;
+            background: #fff;
+            border-radius: 15px;
+            overflow-y: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Left Side (Welcome Section) */
+        .welcome-area {
+            background: #2b7bbd;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .welcome-area h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-area p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-area a {
+            text-decoration: none;
+            color: #2b7bbd;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .welcome-area a:hover {
+            background: #f0f4f8;
+            color: #2b7bbd;
+        }
+
+        /* Right Side (Registration Form) */
+        .registration-form-area {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .registration-form-area h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgb(43, 123, 189);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: rgb(48, 129, 184);
+        }
+
+        /* Logo Style */
+        .auth-logo {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<div class="auth-container">
+    <!-- Welcome Section -->
+    <div class="welcome-area">
+        <p><img src="{% static 'logo.png' %}" alt="Logo" class="auth-logo"></p>
+        <h2>Welcome to Registration!</h2>
+        <p>Already have an account?</p>
+        <a href="/login">Login</a>
+    </div>
+
+    <!-- Registration Form Section -->
+    <div class="registration-form-area">
+        <h1>User Registration</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td class="float-end">
+                        <input class="btn-primary" type="submit" value="Register">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+{% endblock content %}

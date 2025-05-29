@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% block sidenav %}
+   {% for item in item_list %}
+      <a class="nav-item btn btn-dark mb-2" href="{{ item.link }}"> {{ item.item }}</a>
+   {% endfor %}
+{% endblock sidenav %}
+{% block content %}
+
+<head>
+    <style>
+        
+    </style>
+</head>
+  <!-- About Us Page -->
+  <div class="container mt-5">
+    <!-- Section: Hero -->
+    <section class="hero text-center mb-5">
+      <h1 class="display-3 text-primary">About Us</h1>
+      <p class="lead">Your gateway to exchanging books and sharing knowledge.</p>
+    </section>
+
+    <!-- Section: Who We Are -->
+    <section class="who-we-are mb-5">
+      <h2 class="text-center mb-4">Who We Are</h2>
+      <p class="lead">
+        Welcome to our Online Book Exchange platform, a community-driven initiative that connects book lovers, promotes sustainability, and encourages the sharing of knowledge. We are a diverse group of individuals who believe that books should not just be read, but shared, loved, and passed on.
+      </p>
+    </section>
+
+    <!-- Section: Our Mission -->
+    <section class="our-mission text-center mb-5">
+      <h2 class="text-center mb-4">Our Mission</h2>
+      <p class="lead">
+        Our mission is simple: to create a vibrant community where books find new homes, readers discover hidden gems, and sustainability is promoted through the exchange of pre-loved books. We believe in making knowledge accessible to everyone, affordably and responsibly.
+      </p>
+    </section>
+
+    <!-- Section: How It Works -->
+    <section class="how-it-works mb-5">
+      <h2 class="text-center mb-4">How It Works</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{% static 'images/post-book.jpg' %}" class="card-img-top" alt="Post a Book">
+            <div class="card-body">
+              <h5 class="card-title">1. Post Your Books</h5>
+              <p class="card-text">
+                Simply create listings for books you'd like to exchange, sell, or donate.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{% static 'images/browse-books.jpg' %}" class="card-img-top" alt="Browse Books">
+            <div class="card-body">
+              <h5 class="card-title">2. Browse Books</h5>
+              <p class="card-text">
+                Explore a wide variety of books shared by other members, and find your next favorite read.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{% static 'images/exchange-books.jpg' %}" class="card-img-top" alt="Make the Exchange">
+            <div class="card-body">
+              <h5 class="card-title">3. Make the Exchange</h5>
+              <p class="card-text">
+                Coordinate with others to exchange books locally or have them shipped to your doorstep.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Why Choose Us -->
+    <section class="why-choose-us mb-5">
+      <h2 class="text-center mb-4">Why Choose Us?</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <h3>Sustainability</h3>
+            <p>
+              Reduce waste and embrace eco-friendly reading by passing on pre-loved books.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <h3>Affordable</h3>
+            <p>
+              Save money by exchanging books instead of buying new ones, making reading accessible to all.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <h3>Inclusive Community</h3>
+            <p>
+              Join a diverse community of readers who share your passion for books and knowledge.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% endblock content %}
